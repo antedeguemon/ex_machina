@@ -20,10 +20,10 @@ defmodule ExMachina.EctoStrategy do
     """
   end
 
-  def handle_insert(%{__meta__: %{__struct__: Ecto.Schema.Metadata}} = record, %{repo: repo}) do
+  def handle_insert(%{__meta__: %{__struct__: Ecto.Schema.Metadata}} = record, %{repo: repo, repo_opts: repo_opts}) do
     record
     |> cast()
-    |> repo.insert!()
+    |> repo.insert!(repo_opts)
   end
 
   def handle_insert(record, %{repo: _repo}) do
